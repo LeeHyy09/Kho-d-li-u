@@ -145,7 +145,7 @@ const DuDoan = () => {
       </div>
 
       {/* Biểu đồ Pie Chart theo năm */}
-      <h3>Biểu đổ SpiderChart qua các năm</h3>
+      <h3>Pattern 5: Biểu đổ SpiderChart qua các năm</h3>
       <div className="pie-charts-container">
         {Object.entries(yearlyData).map(([year, data]) => renderPieChart(year, data))}
       </div>

@@ -65,7 +65,7 @@ const ChartComponent = () => {
       case 'pat5':
         return (
           <StyledPaper>
-            <Typography variant="h5">Pattern 5: Temperature Prediction</Typography>
+            <Typography variant="h5">Pattern 7: Temperature Prediction</Typography>
             <DuDoan />
           </StyledPaper>
         );
@@ -99,7 +99,7 @@ const ChartComponent = () => {
               Pattern 4
             </Button>
             <Button color="inherit" onClick={() => handleMenuClick('pat5')}>
-              Pattern 5
+              Pattern 5 vs 7
             </Button>
           </Toolbar>
         </AppBar>
