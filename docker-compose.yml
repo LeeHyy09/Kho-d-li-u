@@ -1,0 +1,75 @@
+version: '3.7'
+
+services:
+  mysql_db:
+    build:
+      context: ./MySQL  # Đặt context cho MySQL
+      dockerfile: Dockerfile  # Dockerfile MySQL
+    container_name: mysql_db
+    ports:
+      - "3306:3306"  # Mở cổng MySQL (cổng 3306)
+    volumes:
+      - ./MySQL/init_db:/docker-entrypoint-initdb.d  # Mount thư mục init_db vào /docker-entrypoint-initdb.d để chạy các tệp SQL
+    environment:
+      MYSQL_ROOT_PASSWORD: ""  # Đặt mật khẩu MySQL root là trống (có thể thay đổi nếu cần mật khẩu)
+      MYSQL_HOST=host.docker.internal
+      MYSQL_USER=root
+      MYSQL_PASSWORD=
+      MYSQL_DB=weather_data
+    networks:
+      - my_network  # Sử dụng mạng my_network (đã khai báo dưới)
+
+  get_set_data:
+    build:
+      context: ./get_set_data  # Đặt context cho get_set_data
+      dockerfile: Dockerfile  # Dockerfile cho ứng dụng Python (get_set_data)
+    container_name: get_set_data
+    volumes:
+      - ./get_set_data:/weather_pipeline  # Mount thư mục get_set_data vào /weather_pipeline trong container
+    ports:
+      - "5001:5001"  # Port cho ứng dụng thứ hai (có thể thay đổi nếu cần)
+    depends_on:
+      - mysql_db  # Đảm bảo MySQL được khởi động trước get_set_data
+    environment:
+      MYSQL_HOST=host.docker.internal
+      MYSQL_USER=root
+      MYSQL_PASSWORD=
+      MYSQL_DB=weather_data
+    networks:
+      - my_network
+
+  backend:
+    build:
+      context: ./backend  # Đặt context là thư mục chứa Dockerfile của backend
+      dockerfile: Dockerfile  # Chỉ định Dockerfile nếu nó không phải là mặc định 'Dockerfile'
+    container_name: backend
+    volumes:
+      - ./backend:/app  # Mount thư mục backend vào thư mục /app trong container
+    ports:
+      - "5000:5000"  # Port cho backend
+    depends_on:
+      - mysql_db  # Đảm bảo MySQL được khởi động trước backend
+    restart: always 
+    environment:
+      MYSQL_HOST=host.docker.internal
+      MYSQL_USER=root
+      MYSQL_PASSWORD=
+      MYSQL_DB=weather_data
+    networks:
+      - my_network
+
+  frontend:
+    build:
+      context: ./frontend  # Đặt context là thư mục chứa Dockerfile của frontend
+      dockerfile: Dockerfile  # Dockerfile của Node.js
+    container_name: frontend
+    volumes:
+      - ./frontend:/frontend  # Mount thư mục frontend vào container
+    ports:
+      - "3000:3000"  # Cổng cho ứng dụng frontend
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge

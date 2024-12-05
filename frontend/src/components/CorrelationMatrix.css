@@ -1,0 +1,17 @@
+/* CorrelationMatrix.css */
+.correlation-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .correlation-container h3 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .correlation-container .plot-container {
+    margin-top: 20px;
+    width: 100%;
+    height: 500px;
+  }
+  

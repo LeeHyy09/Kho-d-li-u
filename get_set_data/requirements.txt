@@ -1,0 +1,7 @@
+requests
+pandas
+mysql-connector-python
+sqlalchemy
+statsmodels
+scikit-learn
+numpy

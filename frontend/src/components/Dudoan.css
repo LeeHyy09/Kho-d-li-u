@@ -1,0 +1,88 @@
+/* Cấu trúc chung */
+.pie-charts-container {
+  display: flex;
+  justify-content: space-around; /* Căn chỉnh các Pie Chart đều nhau */
+  gap: 20px; /* Khoảng cách giữa các Pie Chart */
+  flex-wrap: wrap; /* Cho phép các Pie Chart xuống dòng khi không đủ không gian */
+  margin-top: 30px;
+}
+
+.pie-chart {
+  width: 45%; /* Điều chỉnh kích thước của mỗi Pie Chart */
+  margin-bottom: 20px; /* Khoảng cách dưới mỗi Pie Chart */
+}
+
+.duDoan-container {
+    width: 80%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+  }
+  
+  /* Khung biểu đồ */
+  .chart-container {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  
+  .chart-container h3 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Dự đoán nhiệt độ và hình ảnh nằm trong một ô */
+  .prediction-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  .temperature-info {
+    width: 60%;
+    padding-right: 20px;
+  }
+  
+  .temperature-info h2 {
+    font-size: 24px;
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+  
+  .temperature-info h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .temperature-info p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  /* Hình ảnh dựa trên nhiệt độ */
+  .image-container {
+    width: 35%;
+    text-align: center;
+  }
+  
+  .weather-image {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Thêm một số hiệu ứng hover */
+  .weather-image:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+  }
+  
