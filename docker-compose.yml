@@ -12,10 +12,10 @@ services:
       - ./MySQL/init_db:/docker-entrypoint-initdb.d  # Mount thư mục init_db vào /docker-entrypoint-initdb.d để chạy các tệp SQL
     environment:
       MYSQL_ROOT_PASSWORD: ""  # Đặt mật khẩu MySQL root là trống (có thể thay đổi nếu cần mật khẩu)
-      MYSQL_HOST=host.docker.internal
-      MYSQL_USER=root
-      MYSQL_PASSWORD=
-      MYSQL_DB=weather_data
+      MYSQL_HOST: host.docker.internal
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ""
+      MYSQL_DB: weather_data
     networks:
       - my_network  # Sử dụng mạng my_network (đã khai báo dưới)
 
@@ -31,10 +31,10 @@ services:
     depends_on:
       - mysql_db  # Đảm bảo MySQL được khởi động trước get_set_data
     environment:
-      MYSQL_HOST=host.docker.internal
-      MYSQL_USER=root
-      MYSQL_PASSWORD=
-      MYSQL_DB=weather_data
+      MYSQL_HOST: host.docker.internal
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ""
+      MYSQL_DB: weather_data
     networks:
       - my_network
 
@@ -49,12 +49,12 @@ services:
       - "5000:5000"  # Port cho backend
     depends_on:
       - mysql_db  # Đảm bảo MySQL được khởi động trước backend
-    restart: always 
+    restart: always
     environment:
-      MYSQL_HOST=host.docker.internal
-      MYSQL_USER=root
-      MYSQL_PASSWORD=
-      MYSQL_DB=weather_data
+      MYSQL_HOST: host.docker.internal
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ""
+      MYSQL_DB: weather_data
     networks:
       - my_network
 
